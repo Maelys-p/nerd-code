@@ -8,55 +8,54 @@
 
 using namespace std;
 
+
 ull finder(ull n){
- 
     
     bitset<64> bits(n);
-    bool flag = false;
+    bool flag = false; 
+
     string pieces = bits.to_string();
     pieces.erase(0, pieces.find('1'));
+    
     int length = pieces.size();
+    
     int halflength = length / 2 + length % 2;
-    stack<int> OO;
+    
+    stack<int> leftZeroes;
    
     
     for (int i = 0; i < halflength; ++i)
     {
-        int pair = length - i - 1;
-        if (!bits[pair])
+        if (!bits[length - i - 1])  
         {
-          OO.push(i);
-          if (bits[i]) flag = true;
+          leftZeroes.push(i);
+          if (bits[i]) flag = true; 
         }
         else if (!bits[i]) flag = false;
     }
 
-    if (OO.empty()) 
+    if (leftZeroes.empty()) 
     {
         for (int i = length / 2; i < length; ++i) {
             pieces[i] = '1';
         }
     }
-    
-    else if (flag) 
+    else
     {
-        int lastIndex = OO.top();
+        for (int i = 0; i < halflength; ++i) 
+            pieces[length - i - 1] = pieces[i];         
+    }
+
+    if(flag){ 
+        int lastIndex = leftZeroes.top();
         pieces[lastIndex] = '1';
         pieces[length - lastIndex - 1] = '1';
-
-        for (int i = 1; i < lastIndex; ++i) 
-            pieces[length - i - 1] = pieces[i];
          
         for (int i = lastIndex + 1; i < halflength; ++i)
         { 
             pieces[i] = '0';
             pieces[length - i - 1] = '0';
         }
-    } 
-    else
-    {
-        for (int i = 0; i < halflength; ++i) 
-            pieces[length - i - 1] = pieces[i];         
     }
     
     return bitset<64>(pieces).to_ullong();
