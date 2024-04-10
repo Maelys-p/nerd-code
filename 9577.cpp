@@ -38,21 +38,21 @@ ull finder(ull n){
     else
     {
         for (int i = 0; i < halflength; ++i) 
-            pieces[length - i - 1] = pieces[i];         
-    }
-
-    if(flag)
-    { 
-        int lastIndex = leftZeroes.top();
-        pieces[lastIndex] = '1';
-        pieces[length - lastIndex - 1] = '1';
-         
-        for (int i = lastIndex + 1; i < halflength; ++i)
+            pieces[length - i - 1] = pieces[i];   
+        
+        if(flag)
         { 
-            pieces[i] = '0';
-            pieces[length - i - 1] = '0';
-        }
-    }
+            int lastIndex = leftZeroes.top();
+            pieces[lastIndex] = '1';
+            pieces[length - lastIndex - 1] = '1';
+         
+            for (int i = lastIndex + 1; i < halflength; ++i)
+            { 
+                pieces[i] = '0';
+                pieces[length - i - 1] = '0';
+            }
+        }      
+    }   
     
     return bitset<64>(pieces).to_ullong();
 }
