@@ -4,10 +4,8 @@
 #include <bitset>
  
 #define ull unsigned long long
- 
 
 using namespace std;
-
 
 ull finder(ull n){
     
@@ -18,11 +16,9 @@ ull finder(ull n){
     pieces.erase(0, pieces.find('1'));
     
     int length = pieces.size();
-    
     int halflength = length / 2 + length % 2;
     
-    stack<int> leftZeroes;
-   
+    stack<int> leftZeroes; 
     
     for (int i = 0; i < halflength; ++i)
     {
@@ -36,9 +32,8 @@ ull finder(ull n){
 
     if (leftZeroes.empty()) 
     {
-        for (int i = length / 2; i < length; ++i) {
+        for (int i = length / 2; i < length; ++i) 
             pieces[i] = '1';
-        }
     }
     else
     {
@@ -46,7 +41,8 @@ ull finder(ull n){
             pieces[length - i - 1] = pieces[i];         
     }
 
-    if(flag){ 
+    if(flag)
+    { 
         int lastIndex = leftZeroes.top();
         pieces[lastIndex] = '1';
         pieces[length - lastIndex - 1] = '1';
