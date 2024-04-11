@@ -21,12 +21,13 @@ ull finder(ull n){
     
     for (int i = 0; i < halflength; ++i)
     {
-        if (!bits[length - i - 1])  
+        int pair = length - i - 1;
+        if (pieces[i] == '0')
         {
           leftZeroes.push(i);
-          if (bits[i]) flag = true; 
+          if (pieces[pair] == '1') flag = true;
         }
-        else if (!bits[i]) flag = false;
+        else if (pieces[pair] == '0') flag = false;
     }
 
     if (leftZeroes.empty()) 
