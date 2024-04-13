@@ -9,7 +9,7 @@ int main(){
     {
         int l = A-K*i;
         int m = (B - l*S);
-        if(l<=0 || m<0) continue;
+        if(l<=0 || m<0 || m%i != 0) continue;
         N = m / i;
         possible = true;
         break;
